@@ -1,4 +1,4 @@
-![SauceNAO Logo](tests/logo.png)
+![SauceNAO Logo](https://github.com/nomnoms12/saucenao_api/raw/master/tests/logo.png)
 
 # saucenao_api
 <p>
@@ -12,11 +12,11 @@ Unofficial wrapper for the [SauceNAO](https://saucenao.com/) JSON API
 # Installation
 This package requires Python 3.6 or later
 ```
-
+pip install saucenao_api
 ```
 
-## Dependencies:
- - [`requests`](https://github.com/psf/requests)
+## Dependencies
+ - [requests](https://github.com/psf/requests)
 
 # Usage
 ```python

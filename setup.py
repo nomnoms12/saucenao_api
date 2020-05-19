@@ -1,25 +1,25 @@
 import setuptools
 
 
-with open('README.md') as fh:
+with open('README.md', encoding='utf-8') as fh:
     long_description = fh.read()
 
 setuptools.setup(
     name='saucenao_api',
-    version='0.1',
+    version='1.0.0',
     author='nomnoms12',
     author_email='alexander.ign0918@gmail.com',
-    description='Unofficial wrapper for SauceNAO JSON API',
+    description='Wrapper for SauceNAO JSON API',
     long_description=long_description,
     long_description_content_type='text/markdown',
-    url='https://github.com/nomnoms12/saucenao_api',
-    packages=setuptools.find_packages('saucenao_api'),
+    url='https://github.com/nomnoms12/saucenao_api/',
+    packages=['saucenao_api'],
     classifiers=[
         'Programming Language :: Python :: 3',
         'License :: OSI Approved :: MIT License',
         'Operating System :: OS Independent',
     ],
-    python_requires='>=3.6, <4',
+    python_requires='>= 3.6',
     install_requires=[
         'requests ~= 2.23.0',
     ],
@@ -32,7 +32,7 @@ setuptools.setup(
         ],
     },
     project_urls={
-       'Bug Reports': 'https://github.com/nomnoms12/saucenao_api/issues',
+       'Bug Reports': 'https://github.com/nomnoms12/saucenao_api/issues/',
        'Source': 'https://github.com/nomnoms12/saucenao_api/',
     },
 )
