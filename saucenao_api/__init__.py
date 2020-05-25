@@ -1,4 +1,3 @@
-#!/usr/bin/env python
 from .saucenao_api import SauceNao
 from .containers import BasicSauce, BookSauce, VideoSauce
 

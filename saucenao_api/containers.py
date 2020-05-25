@@ -1,5 +1,5 @@
-#!/usr/bin/env python
 from typing import Optional, List
+
 from .params import DB
 
 
