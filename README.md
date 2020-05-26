@@ -1,9 +1,9 @@
-![SauceNAO Logo](https://github.com/nomnoms12/saucenao_api/raw/master/tests/logo.png)
+![SauceNAO Logo](/tests/logo.png)
 
 # saucenao_api
 [![Build Status](https://travis-ci.com/nomnoms12/saucenao_api.svg?branch=master)](https://travis-ci.com/nomnoms12/saucenao_api)
 [![Coverage Status](https://coveralls.io/repos/github/nomnoms12/saucenao_api/badge.svg?branch=master)](https://coveralls.io/github/nomnoms12/saucenao_api?branch=master)
-![License](https://img.shields.io/github/license/nomnoms12/saucenao_api?color=blueviolet)
+[![License](https://img.shields.io/github/license/nomnoms12/saucenao_api?color=blueviolet)](/LICENSE)
 [![SauceNao Status](https://img.shields.io/website?url=https%3A%2F%2Fsaucenao.com%2F)](https://saucenao.com/)
 
 > “The rough edges are a part of its charm”
