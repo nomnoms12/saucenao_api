@@ -6,7 +6,7 @@ with open('README.md', encoding='utf-8') as fh:
 
 setuptools.setup(
     name='saucenao_api',
-    version='1.0.0',
+    version='1.0.1',
     author='nomnoms12',
     author_email='alexander.ign0918@gmail.com',
     description='Wrapper for SauceNAO JSON API',
@@ -15,7 +15,9 @@ setuptools.setup(
     url='https://github.com/nomnoms12/saucenao_api/',
     packages=['saucenao_api'],
     classifiers=[
-        'Programming Language :: Python :: 3',
+        'Programming Language :: Python :: 3.6',
+        'Programming Language :: Python :: 3.7',
+        'Programming Language :: Python :: 3.8',
         'License :: OSI Approved :: MIT License',
         'Operating System :: OS Independent',
     ],
