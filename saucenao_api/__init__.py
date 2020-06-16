@@ -2,7 +2,7 @@ from .saucenao_api import SauceNao
 from .containers import BasicSauce, BookSauce, VideoSauce
 
 
-__author__ = 'FujiMakoto'
+__author__ = 'nomnoms12'
 __copyright__ = 'Copyright 2020, Taiga.sh Development'
 __credits__ = ['nomnoms12', 'FujiMakoto']
 __license__ = 'GNU General Public License v3.0'
