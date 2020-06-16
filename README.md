@@ -74,3 +74,5 @@ if isinstance(result, VideoSauce):
 elif isinstance(result, BookSauce):
     result.part
 ```
+# License
+This package is based on [pysaucenao](https://github.com/FujiMakoto/pysaucenao).
