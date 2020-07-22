@@ -95,8 +95,8 @@ class SauceNao:
 
         # Taken from https://saucenao.com/tools/examples/api/identify_images_v1.1.py
         if short_remaining < 0:
-            raise ShortLimitReachedError('24 hours limit reached')
+            raise ShortLimitReachedError('30 seconds limit reached')
         elif long_remaining < 0:
-            raise LongLimitReachedError('30 seconds limit reached')
+            raise LongLimitReachedError('24 hours limit reached')
 
         return parsed_resp
