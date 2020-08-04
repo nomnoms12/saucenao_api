@@ -1,4 +1,4 @@
-![SauceNAO Logo](https://raw.githubusercontent.com/nomnoms12/saucenao_api/master/tests/logo.png)
+![SauceNAO Logo](https://user-images.githubusercontent.com/44947427/89287471-b9289000-d65c-11ea-905d-aa72f908a9b3.png)
 
 # saucenao_api
 [![Build Status](https://travis-ci.com/nomnoms12/saucenao_api.svg?branch=master)](https://travis-ci.com/nomnoms12/saucenao_api)
@@ -17,54 +17,39 @@ This package requires Python 3.6 or later
 pip install saucenao_api
 ```
 
-## Dependencies
- - [requests](https://github.com/psf/requests)
-
 # Usage
 ```python
 from saucenao_api import SauceNao
-from saucenao_api.params import DB, Hide, Bgcolor
 
-# Parameters from https://saucenao.com/user.php?page=search-api
-sauce = SauceNao(api_key=None,
-                 testmode=0,
-                 dbmask=None,
-                 dbmaski=None,
-                 db=DB.ALL,
-                 numres=6,
-                 hide=Hide.NONE,
-                 bgcolor=Bgcolor.NONE)
+sauce = SauceNao()
+results = sauce.from_url('https://i.imgur.com/oZjCxGo.jpg')  # or from_file()
 
-# results = sauce.from_file(file)
-results = sauce.from_url('https://i.imgur.com/oZjCxGo.jpg')
-
-results.short_remaining  # 30 seconds limit
-results.long_remaining   # 24 hours limit
-
-len(results)  # 6
-print(repr(results))
+best = results[0]  # results sorted by similarity
 ```
-```python
-<SauceResponse(results_count=6, long_remaining=99, short_remaining=3)>
-```
-The library provides common parameters, such as `similarity`, `title`, `url`, `author` and some others for almost all results:
+
+The library attempts to provide a developer friendly container format for all results. Meaning, no matter if SauceNao returns a Pixiv source result or a more obscure source, you'll be able to easily pull the `title`, `url`, `author` and other useful information:
 ```python
 from saucenao_api import SauceNao
+results = SauceNao().from_url('https://i.imgur.com/oZjCxGo.jpg')
 
-sauce = SauceNao()
-results = sauce.from_url('https://i.imgur.com/oZjCxGo.jpg')
+len(results)   # 6
+bool(results)  # True
 
-results[0].similarity  # 93.3
-results[0].title       # めぐみん
-results[0].url         # https://www.pixiv.net/member_illust.php?mode=medium&illust_id=77630170
-results[0].author      # frgs
+# Request limits
+results.short_remaining  # 4  (per 30 seconds limit)
+results.long_remaining   # 99 (per day limit)
+
+results[0].thumbnail     # temporary URL for picture preview
+results[0].similarity    # 93.3
+results[0].title         # めぐみん
+results[0].url           # https://www.pixiv.net/member_illust.php?mode=medium&illust_id=77630170
+results[0].author        # frgs
 ```
-There are also special `VideoSauce` and `BookSauce` containers with extra parameters:
+
+Video search results and book search results provide additional attributes:
 ```python
 from saucenao_api import SauceNao, VideoSauce, BookSauce
-
-sauce = SauceNao()
-result = sauce.from_url('https://i.imgur.com/k9xlw6f.jpg')[0]
+result = SauceNao().from_url('https://i.imgur.com/k9xlw6f.jpg')[0]
 
 if isinstance(result, VideoSauce):
     result.part      # 02
@@ -74,5 +59,28 @@ if isinstance(result, VideoSauce):
 elif isinstance(result, BookSauce):
     result.part
 ```
+*You can use the `dir` function to see all the attributes.*
+
+## Advanced usage
+```python
+from saucenao_api import SauceNao
+from saucenao_api.params import DB, Hide, BgColor
+
+sauce = SauceNao(api_key=None,          # Optional[str] 
+                 testmode=0,            # int
+                 dbmask=None,           # Optional[int]
+                 dbmaski=None,          # Optional[int]
+                 db=DB.ALL,             # int
+                 numres=6,              # int
+                 frame=1,               # int
+                 hide=Hide.NONE,        # int
+                 bgcolor=BgColor.NONE,  # int
+)
+```
+The parameters `frame`,` hide` and `bgcolor` are taken from the main page and from the [testing page](https://saucenao.com/testing), so their performance is not guaranteed. For the rest see [SauceNAO User Config](https://saucenao.com/user.php?page=search-api) page (registration required).
+
+### Exceptions
+All exceptions inherit from `SauceNaoApiError` for easy catching and handling. See [`errors.py`](saucenao_api/errors.py) file for details.
+
 # License
-This package is based on [pysaucenao](https://github.com/FujiMakoto/pysaucenao).
+This package is based on [`pysaucenao`](https://github.com/FujiMakoto/pysaucenao).
