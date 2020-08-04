@@ -1,11 +1,11 @@
 import pytest
+import requests
 import responses
 
 from saucenao_api import SauceNao
 from saucenao_api.errors import (UnknownServerError, UnknownClientError, BadKeyError, BadFileSizeError,
                                  ShortLimitReachedError, LongLimitReachedError)
-from . import examples as e
-
+from . import test_suite as e
 
 SAUCENAO_URL = SauceNao.SAUCENAO_URL
 
@@ -23,20 +23,20 @@ def test_from_url(mocked_responses):
     mocked_responses.add_callback(responses.POST, SAUCENAO_URL, callback=request_callback)
 
     saucenao = SauceNao()
-    with pytest.raises(UnknownServerError):
+    with pytest.raises(requests.exceptions.HTTPError):
         saucenao.from_url('https://example.com/')
 
 
 def test_from_file(mocked_responses):
     def request_callback(request):
-        assert bin_image in request.body
+        assert bin_file in request.body
         return 500, {}, ''
     mocked_responses.add_callback(responses.POST, SAUCENAO_URL, callback=request_callback)
 
-    with open('tests/logo.png', 'rb') as f:
-        bin_image = f.read()
+    with open('tests/test_suite.py', 'rb') as f:
+        bin_file = f.read()
         f.seek(0)
-        with pytest.raises(UnknownServerError):
+        with pytest.raises(requests.exceptions.HTTPError):
             SauceNao().from_file(f)
 
 
@@ -51,7 +51,7 @@ def test_optional_params(mocked_responses):
     mocked_responses.add_callback(responses.POST, SAUCENAO_URL, callback=request_callback)
 
     saucenao = SauceNao('SauceNAO', dbmask=12, dbmaski=918)
-    with pytest.raises(UnknownServerError):
+    with pytest.raises(requests.exceptions.HTTPError):
         saucenao.from_url('https://example.com/')
 
 
@@ -76,12 +76,6 @@ def test_429_short_limit_unregister(mocked_responses):
 def test_429_long_limit_unregister(mocked_responses):
     mocked_responses.add(responses.POST, SAUCENAO_URL, status=429, json=e.LongLimitUnregister)
     with pytest.raises(LongLimitReachedError):
-        SauceNao().from_url('https://example.com/')
-
-
-def test_500(mocked_responses):
-    mocked_responses.add(responses.POST, SAUCENAO_URL, status=500)
-    with pytest.raises(UnknownServerError):
         SauceNao().from_url('https://example.com/')
 
 
