@@ -106,8 +106,6 @@ class SauceResponse:
         self.results_requested:   int = resp_header['results_requested']
         self.search_depth:        str = resp_header['search_depth']
         self.minimum_similarity:  float = resp_header['minimum_similarity']
-        self.query_image_display: str = resp_header['query_image_display']
-        self.query_image:         str = resp_header['query_image']
         self.results_returned:    int = resp_header['results_returned']
         self.results:             List[BasicSauce] = parsed_results
 
