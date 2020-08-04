@@ -34,6 +34,7 @@ class DB(enum.auto):
     Pawoonet = 35
     Madokami = 36
     MangaDex = 37
+    HMisc_EHentai = 38
     ALL = 999
 
 
