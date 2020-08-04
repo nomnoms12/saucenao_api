@@ -56,6 +56,12 @@ class BasicSauce:
                 return data['creator'][0]
             return data['creator']
 
+    def __str__(self):
+        return self.title
+
+    def __repr__(self):
+        return f'<BasicSauce(title={repr(self.title)}, similarity={self.similarity:.2f})>'
+
 
 class BookSauce(BasicSauce):
     def __init__(self, result):
@@ -63,6 +69,9 @@ class BookSauce(BasicSauce):
         data = result['data']
 
         self.part: str = data['part']
+
+    def __repr__(self):
+        return f'<BookSauce(title={repr(self.title)}, part={repr(self.part)}, similarity={self.similarity:.2f})>'
 
 
 class VideoSauce(BasicSauce):
@@ -73,6 +82,9 @@ class VideoSauce(BasicSauce):
         self.part:     str = data['part']
         self.year:     str = data['year']
         self.est_time: str = data['est_time']
+
+    def __repr__(self):
+        return f'<VideoSauce(title={repr(self.title)}, part={repr(self.part)}, similarity={self.similarity:.2f})>'
 
 
 class SauceResponse:
@@ -118,6 +130,9 @@ class SauceResponse:
 
     def __len__(self):
         return len(self.results)
+
+    def __bool__(self):
+        return bool(self.results)
 
     def __getitem__(self, item):
         return self.results[item]
