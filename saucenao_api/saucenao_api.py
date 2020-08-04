@@ -71,8 +71,7 @@ class SauceNao:
                 raise LongLimitReachedError('24 hours limit reached')
             raise ShortLimitReachedError('30 seconds limit reached')
 
-        else:
-            raise UnknownServerError(f'Unknown API error. HTTP code: {status_code}')
+        resp.raise_for_status()
 
     @staticmethod
     def _verify_response(resp, params):
