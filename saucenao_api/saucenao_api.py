@@ -2,10 +2,10 @@ from typing import Optional, BinaryIO
 
 import requests
 
-from .params import _OutputType, DB, Hide, Bgcolor
+from .containers import SauceResponse
 from .errors import (UnknownServerError, UnknownClientError, BadKeyError, BadFileSizeError,
                      ShortLimitReachedError, LongLimitReachedError)
-from .containers import SauceResponse
+from .params import _OutputType, DB, Hide, BgColor
 
 
 class SauceNao:
@@ -20,25 +20,29 @@ class SauceNao:
                  db:       int = DB.ALL,
                  numres:   int = 6,
                  hide:     int = Hide.NONE,
-                 bgcolor:  int = Bgcolor.NONE,
+                 bgcolor:  int = BgColor.NONE,
                  ) -> None:
-        self.params = {
-            'testmode': testmode,
-            'db': db,
-            'numres': numres,
-            'hide': hide,
-            'bgcolor': bgcolor,    # from https://saucenao.com/testing/
-        }
+
+        params = dict()
+
         if api_key is not None:
-            self.params['api_key'] = api_key
+            params['api_key'] = api_key
         if dbmask is not None:
-            self.params['dbmask'] = dbmask
+            params['dbmask'] = dbmask
         if dbmaski is not None:
-            self.params['dbmaski'] = dbmaski
+            params['dbmaski'] = dbmaski
+
+        params['testmode'] = testmode
+        params['db'] = db
+        params['numres'] = numres
+        params['hide'] = hide
+        params['frame'] = frame
+        params['bgcolor'] = bgcolor               # from https://saucenao.com/testing/
+        params['output_type'] = _OutputType.JSON
+        self.params = params
 
     def from_file(self, file: BinaryIO) -> SauceResponse:
-        params = self.params.copy()
-        return self._search(params, {'file': file})
+        return self._search(self.params, {'file': file})
 
     def from_url(self, url: str) -> SauceResponse:
         params = self.params.copy()
@@ -46,12 +50,11 @@ class SauceNao:
         return self._search(params)
 
     def _search(self, params, files=None):
-        params['output_type'] = _OutputType.JSON
         resp = requests.post(self.SAUCENAO_URL, params=params, files=files)
         status_code = resp.status_code
 
         if status_code == 200:
-            raw = self._process_response(resp, params)
+            raw = self._verify_response(resp, params)
             return SauceResponse(raw)
 
         # Taken from https://saucenao.com/tools/examples/api/identify_images_v1.1.py
@@ -71,7 +74,7 @@ class SauceNao:
             raise UnknownServerError(f'Unknown API error. HTTP code: {status_code}')
 
     @staticmethod
-    def _process_response(resp, params):
+    def _verify_response(resp, params):
         parsed_resp = resp.json()
         resp_header = parsed_resp['header']
 

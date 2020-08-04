@@ -4,18 +4,18 @@ import enum
 class DB(enum.auto):
     HMagazines = 0
     HGame_CG = 2
-    DoujinshiDB = 3         # Not worked?
+    DoujinshiDB = 3
     Pixiv_Images = 5
     Nico_Nico_Seiga = 8
     Danbooru = 9
     Drawr_Images = 10
     Nijie_Images = 11
     Yandere = 12
-    Openingsmoe = 13        # Not worked?
-    Shutterstock = 15       # Not worked?
+    Openingsmoe = 13
+    Shutterstock = 15
     FAKKU = 16
     HMisc = 18
-    TwoDMarket = 19         # Not worked?
+    TwoDMarket = 19
     MediBang = 20
     Anime = 21
     HAnime = 22
@@ -24,7 +24,7 @@ class DB(enum.auto):
     Gelbooru = 25
     Konachan = 26
     SankakuChannel = 27
-    AnimePicturesnet = 28   # Not worked?
+    AnimePicturesnet = 28
     E621net = 29
     IdolComplex = 30
     Bcynet_Illust = 31
@@ -44,7 +44,7 @@ class Hide(enum.auto):
     ALL = 3
 
 
-class Bgcolor(enum.auto):
+class BgColor(enum.auto):
     NONE = 'none'
     WHITE = 'white'
     BLACK = 'black'

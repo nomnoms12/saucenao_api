@@ -6,16 +6,15 @@ from .params import DB
 class BasicSauce:
     def __init__(self, raw):
         result_header = raw['header']
-        data = raw['data']
 
         self.raw:        dict = raw
         self.similarity: float = float(result_header['similarity'])
         self.thumbnail:  str = result_header['thumbnail']
         self.index_id:   int = result_header['index_id']
         self.index_name: str = result_header['index_name']
-        self.title:      Optional[str] = self._get_title(data)
-        self.url:        Optional[str] = self._get_url(data)
-        self.author:     Optional[str] = self._get_author(data)
+        self.title:      Optional[str] = self._get_title(raw['data'])
+        self.url:        Optional[str] = self._get_url(raw['data'])
+        self.author:     Optional[str] = self._get_author(raw['data'])
 
     @staticmethod
     def _get_title(data):
@@ -104,10 +103,10 @@ class SauceResponse:
         if results is None:
             return []
 
-        filtered_results = sorted(results, key=lambda r: float(r['header']['similarity']), reverse=True)
+        sorted_results = sorted(results, key=lambda r: float(r['header']['similarity']), reverse=True)
 
         parsed_results = []
-        for result in filtered_results:
+        for result in sorted_results:
             index_id = result['header']['index_id']
             if index_id in self._BOOK_INDEXES:
                 parsed_results.append(BookSauce(result))
@@ -124,5 +123,5 @@ class SauceResponse:
         return self.results[item]
 
     def __repr__(self):
-        return (f'<SauceResponse(results_count={len(self.results)}, long_remaining={self.long_remaining}, '
-                f'short_remaining={self.short_remaining})>')
+        return (f'<SauceResponse(count={repr(len(self.results))}, long_remaining={repr(self.long_remaining)}, '
+                f'short_remaining={repr(self.short_remaining)})>')

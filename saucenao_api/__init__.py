@@ -1,6 +1,5 @@
-from .saucenao_api import SauceNao
 from .containers import BasicSauce, BookSauce, VideoSauce
-
+from .saucenao_api import SauceNao
 
 __author__ = 'nomnoms12'
 __copyright__ = 'Copyright 2020, Taiga.sh Development'
