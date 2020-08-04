@@ -96,14 +96,14 @@ class SauceResponse:
         parsed_results = self._parse_results(resp['results'])
 
         self.raw:                 dict = resp
-        self.user_id:             str = resp_header['user_id']
-        self.account_type:        str = resp_header['account_type']
+        self.user_id:             int = resp_header['user_id']
+        self.account_type:        int = resp_header['account_type']
         self.short_limit:         str = resp_header['short_limit']
         self.long_limit:          str = resp_header['long_limit']
         self.long_remaining:      int = resp_header['long_remaining']
         self.short_remaining:     int = resp_header['short_remaining']
         self.status:              int = resp_header['status']
-        self.results_requested:   str = resp_header['results_requested']
+        self.results_requested:   int = resp_header['results_requested']
         self.search_depth:        str = resp_header['search_depth']
         self.minimum_similarity:  float = resp_header['minimum_similarity']
         self.query_image_display: str = resp_header['query_image_display']
