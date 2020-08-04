@@ -19,6 +19,7 @@ class SauceNao:
                  dbmaski:  Optional[int] = None,
                  db:       int = DB.ALL,
                  numres:   int = 6,
+                 frame:    int = 1,
                  hide:     int = Hide.NONE,
                  bgcolor:  int = BgColor.NONE,
                  ) -> None:
