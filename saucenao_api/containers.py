@@ -56,9 +56,6 @@ class BasicSauce:
                 return data['creator'][0]
             return data['creator']
 
-    def __str__(self):
-        return self.title
-
     def __repr__(self):
         return f'<BasicSauce(title={repr(self.title)}, similarity={self.similarity:.2f})>'
 

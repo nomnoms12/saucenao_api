@@ -53,13 +53,6 @@ def test_response_bool(mocked_responses):
     assert bool(results) is False
 
 
-def test_response_str(mocked_responses):
-    mocked_responses.add(responses.POST, SAUCENAO_URL, json=e.HMagazines)
-    result = SauceNao().from_url('https://example.com/')[0]
-
-    assert str(result) == 'Hime Dorobou'
-
-
 def test_response_repr(mocked_responses):
     mocked_responses.add(responses.POST, SAUCENAO_URL, json=e.HGame_CG)
     results = SauceNao().from_url('https://example.com/')
