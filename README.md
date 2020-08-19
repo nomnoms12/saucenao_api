@@ -42,7 +42,7 @@ results.long_remaining   # 99 (per day limit)
 results[0].thumbnail     # temporary URL for picture preview
 results[0].similarity    # 93.3
 results[0].title         # めぐみん
-results[0].url           # https://www.pixiv.net/member_illust.php?mode=medium&illust_id=77630170
+results[0].url           # ['https://www.pixiv.net/member_illust.php?mode=medium&illust_id=77630170']
 results[0].author        # frgs
 ```
 

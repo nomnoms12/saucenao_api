@@ -14,7 +14,7 @@ class BasicSauce:
         self.index_name: str = result_header['index_name']
         self.title:      Optional[str] = self._get_title(raw['data'])
         self.url:        Optional[str] = self._get_url(raw['data'])
-        self.author:     Optional[str] = self._get_author(raw['data'])
+        self.author:     List[str] = self._get_author(raw['data'])
 
     @staticmethod
     def _get_title(data):
@@ -32,11 +32,10 @@ class BasicSauce:
 
     @staticmethod
     def _get_url(data):
-        # Order is important!
         if 'ext_urls' in data:
-            return data['ext_urls'][0]
+            return data['ext_urls']
         elif 'getchu_id' in data:
-            return f'http://www.getchu.com/soft.phtml?id={data["getchu_id"]}'
+            return [f'http://www.getchu.com/soft.phtml?id={data["getchu_id"]}']
 
     @staticmethod
     def _get_author(data):
