@@ -96,7 +96,7 @@ def test_hmagazines(mocked_responses):
     result = SauceNao().from_url('https://example.com/')[0]
 
     assert result.title == 'Hime Dorobou'
-    assert result.url is None
+    assert result.urls == []
     assert result.author is None
     assert type(result) is BookSauce
     assert result.part == '[2001-01]'
@@ -107,7 +107,7 @@ def test_hgamecg(mocked_responses):
     result = SauceNao().from_url('https://example.com/')[0]
 
     assert result.title == 'Haramiko'
-    assert result.url == 'http://www.getchu.com/soft.phtml?id=587705'
+    assert result.urls == ['http://www.getchu.com/soft.phtml?id=587705']
     assert result.author == 'Selen'
     assert type(result) is BasicSauce
 
@@ -117,7 +117,7 @@ def test_pixivimages(mocked_responses):
     result = SauceNao().from_url('https://example.com/')[0]
 
     assert result.title == '妖キャラをカリスマ化してみた。'
-    assert result.url == 'https://www.pixiv.net/member_illust.php?mode=medium&illust_id=4933944'
+    assert result.urls == ['https://www.pixiv.net/member_illust.php?mode=medium&illust_id=4933944']
     assert result.author == '佳虫'
     assert type(result) is BasicSauce
 
@@ -127,7 +127,7 @@ def test_niconicoseiga(mocked_responses):
     result = SauceNao().from_url('https://example.com/')[0]
 
     assert result.title == 'ボイスロイドたちの学園クトゥルフ'
-    assert result.url == 'https://seiga.nicovideo.jp/seiga/im3917445'
+    assert result.urls == ['https://seiga.nicovideo.jp/seiga/im3917445']
     assert result.author == 'ナギネコ'
     assert type(result) is BasicSauce
 
@@ -137,7 +137,7 @@ def test_danbooru(mocked_responses):
     result = SauceNao().from_url('https://example.com/')[0]
 
     assert result.title == 'highly responsive to prayers, touhou, touhou (pc-98)'
-    assert result.url == 'https://danbooru.donmai.us/post/show/736634'
+    assert result.urls == ['https://danbooru.donmai.us/post/show/736634']
     assert result.author == 'nichimatsu seri'
     assert type(result) is BasicSauce
 
@@ -147,7 +147,7 @@ def test_drawrimages(mocked_responses):
     result = SauceNao().from_url('https://example.com/')[0]
 
     assert result.title == '2012-05-07 03:41:38'
-    assert result.url == 'https://drawr.net/show.php?id=3728320'
+    assert result.urls == ['https://drawr.net/show.php?id=3728320']
     assert result.author == 'CAMfc'
     assert type(result) is BasicSauce
 
@@ -157,7 +157,7 @@ def test_nijieimages(mocked_responses):
     result = SauceNao().from_url('https://example.com/')[0]
 
     assert result.title == 'Broadcasting accident - All Five !!'
-    assert result.url == 'https://nijie.info/view.php?id=334086'
+    assert result.urls == ['https://nijie.info/view.php?id=334086']
     assert result.author == '青虫'
     assert type(result) is BasicSauce
 
@@ -167,7 +167,7 @@ def test_yandere(mocked_responses):
     result = SauceNao().from_url('https://example.com/')[0]
 
     assert result.title == 'metal gear'
-    assert result.url == 'https://yande.re/post/show/33539'
+    assert result.urls == ['https://yande.re/post/show/33539']
     assert result.author == ''
     assert type(result) is BasicSauce
 
@@ -177,7 +177,7 @@ def test_fakku(mocked_responses):
     result = SauceNao().from_url('https://example.com/')[0]
 
     assert result.title == 'Ima Real'
-    assert result.url == 'https://www.fakku.net/hentai/ima-real-english'
+    assert result.urls == ['https://www.fakku.net/hentai/ima-real-english']
     assert result.author == 'Takeda Hiromitsu'
     assert type(result) is BasicSauce
 
@@ -187,7 +187,7 @@ def test_hmisc(mocked_responses):
     result = SauceNao().from_url('https://example.com/')[0]
 
     assert result.title == '[Erect Sawaru] Shinkyoku no Grimoire III -PANDRA saga 2nd story-'
-    assert result.url is None
+    assert result.urls == []
     assert result.author == 'erect sawaru | moroboshi guy'
     assert type(result) is BasicSauce
 
@@ -197,7 +197,7 @@ def test_twodmarket(mocked_responses):
     result = SauceNao().from_url('https://example.com/')[0]
 
     assert result.title == 'Rain Shelter Tale'
-    assert result.url == 'https://2d-market.com/Comic/133'
+    assert result.urls == ['https://2d-market.com/Comic/133']
     assert result.author == 'Kabayakiya'
     assert type(result) is BasicSauce
 
@@ -207,7 +207,7 @@ def test_medibang(mocked_responses):
     result = SauceNao().from_url('https://example.com/')[0]
 
     assert result.title == '戦闘摂理解析システム'
-    assert result.url == 'https://medibang.com/picture/gu1802142236123490002513827'
+    assert result.urls == ['https://medibang.com/picture/gu1802142236123490002513827']
     assert result.author == '紅羽'
     assert type(result) is BasicSauce
 
@@ -217,7 +217,7 @@ def test_anime(mocked_responses):
     result = SauceNao().from_url('https://example.com/')[0]
 
     assert result.title == 'One Piece'
-    assert result.url == 'https://anidb.net/anime/69'
+    assert result.urls == ['https://anidb.net/anime/69']
     assert result.author is None
     assert type(result) is VideoSauce
     assert result.part == '299'
@@ -230,7 +230,7 @@ def test_hanime(mocked_responses):
     result = SauceNao().from_url('https://example.com/')[0]
 
     assert result.title == 'Onmyouji Ayakashi no Megami: Inran Jubaku'
-    assert result.url == 'https://anidb.net/anime/7065'
+    assert result.urls == ['https://anidb.net/anime/7065']
     assert result.author is None
     assert type(result) is VideoSauce
     assert result.part == '1'
@@ -243,7 +243,7 @@ def test_movies(mocked_responses):
     result = SauceNao().from_url('https://example.com/')[0]
 
     assert result.title == 'Tombstone'
-    assert result.url == 'https://www.imdb.com/title/tt0108358'
+    assert result.urls == ['https://www.imdb.com/title/tt0108358']
     assert result.author is None
     assert type(result) is VideoSauce
     assert result.part is None
@@ -256,7 +256,7 @@ def test_shows(mocked_responses):
     result = SauceNao().from_url('https://example.com/')[0]
 
     assert result.title == 'Star Trek - Enterprise'
-    assert result.url == 'https://www.imdb.com/title/tt0244365'
+    assert result.urls == ['https://www.imdb.com/title/tt0244365']
     assert result.author is None
     assert type(result) is VideoSauce
     assert result.part == 'S01E21'
@@ -269,7 +269,7 @@ def test_gelbooru(mocked_responses):
     result = SauceNao().from_url('https://example.com/')[0]
 
     assert result.title == 'atlus, persona, persona 4'
-    assert result.url == 'https://gelbooru.com/index.php?page=post&s=view&id=559170'
+    assert result.urls == ['https://gelbooru.com/index.php?page=post&s=view&id=559170']
     assert result.author == 'chinchikooru (pixiv)'
     assert type(result) is BasicSauce
 
@@ -279,7 +279,7 @@ def test_konachan(mocked_responses):
     result = SauceNao().from_url('https://example.com/')[0]
 
     assert result.title == 'tengen toppa gurren lagann'
-    assert result.url == 'https://konachan.com/post/show/82192'
+    assert result.urls == ['https://konachan.com/post/show/82192']
     assert result.author == 'gainax, nanao'
     assert type(result) is BasicSauce
 
@@ -289,7 +289,7 @@ def test_sankakuchannel(mocked_responses):
     result = SauceNao().from_url('https://example.com/')[0]
 
     assert result.title == 'harry potter'
-    assert result.url == 'https://chan.sankakucomplex.com/post/show/4922724'
+    assert result.urls == ['https://chan.sankakucomplex.com/post/show/4922724']
     assert result.author == ''
     assert type(result) is BasicSauce
 
@@ -299,7 +299,7 @@ def test_e621net(mocked_responses):
     result = SauceNao().from_url('https://example.com/')[0]
 
     assert result.title == ''
-    assert result.url == 'https://e621.net/post/show/1410034'
+    assert result.urls == ['https://e621.net/post/show/1410034']
     assert result.author == 'unknown artist'
     assert type(result) is BasicSauce
 
@@ -309,7 +309,7 @@ def test_idolcomplex(mocked_responses):
     result = SauceNao().from_url('https://example.com/')[0]
 
     assert result.title == ''
-    assert result.url == 'https://idol.sankakucomplex.com/post/show/441604'
+    assert result.urls == ['https://idol.sankakucomplex.com/post/show/441604']
     assert result.author == ''
     assert type(result) is BasicSauce
 
@@ -319,7 +319,7 @@ def test_bcynetillust(mocked_responses):
     result = SauceNao().from_url('https://example.com/')[0]
 
     assert result.title == '|*美食方言*|'
-    assert result.url == 'https://bcy.net/illust/detail/55206'
+    assert result.urls == ['https://bcy.net/illust/detail/55206']
     assert result.author == '第四存档点'
     assert type(result) is BasicSauce
 
@@ -329,7 +329,7 @@ def test_bcynetcosplay(mocked_responses):
     result = SauceNao().from_url('https://example.com/')[0]
 
     assert result.title == '2015總結 星名皇'
-    assert result.url == 'https://bcy.net/coser/detail/54748'
+    assert result.urls == ['https://bcy.net/coser/detail/54748']
     assert result.author == '星名皇'
     assert type(result) is BasicSauce
 
@@ -339,7 +339,7 @@ def test_portalgraphicsnet(mocked_responses):
     result = SauceNao().from_url('https://example.com/')[0]
 
     assert result.title == '並べた'
-    assert result.url == 'https://web.archive.org/web/http://www.portalgraphics.net/pg/illust/?image_id=77837'
+    assert result.urls == ['https://web.archive.org/web/http://www.portalgraphics.net/pg/illust/?image_id=77837']
     assert result.author == '神崎'
     assert type(result) is BasicSauce
 
@@ -349,7 +349,7 @@ def test_deviantart(mocked_responses):
     result = SauceNao().from_url('https://example.com/')[0]
 
     assert result.title == 'Koshitantan + video link+stagedl'
-    assert result.url == 'https://deviantart.com/view/515715132'
+    assert result.urls == ['https://deviantart.com/view/515715132']
     assert result.author == 'SliverRose0916'
     assert type(result) is BasicSauce
 
@@ -359,7 +359,7 @@ def test_pawoonet(mocked_responses):
     result = SauceNao().from_url('https://example.com/')[0]
 
     assert result.title == '2017-10-11T12:29:20.000Z'
-    assert result.url == 'https://pawoo.net/@nez_ebi'
+    assert result.urls == ['https://pawoo.net/@nez_ebi']
     assert result.author == 'nez_ebi'
     assert type(result) is BasicSauce
 
@@ -369,7 +369,7 @@ def test_madokami(mocked_responses):
     result = SauceNao().from_url('https://example.com/')[0]
 
     assert result.title == 'Maou Dante'
-    assert result.url == 'https://www.mangaupdates.com/series.html?id=4451'
+    assert result.urls == ['https://www.mangaupdates.com/series.html?id=4451']
     assert result.author is None
     assert type(result) is BookSauce
     assert result.part == 'Maou Dante v01'
@@ -380,7 +380,9 @@ def test_mangadex(mocked_responses):
     result = SauceNao().from_url('https://example.com/')[0]
 
     assert result.title == 'Prison School'
-    assert result.url == 'https://mangadex.org/chapter/53801/'
+    assert result.urls == ['https://mangadex.org/chapter/53801/',
+                          'https://www.mangaupdates.com/series.html?id=63043',
+                          'https://myanimelist.net/manga/25297/']
     assert result.author == 'Hiramoto Akira'
     assert type(result) is BookSauce
     assert result.part == ' - Chapter 27'
@@ -391,5 +393,5 @@ def test_hmiscehentai(mocked_responses):
     result = SauceNao().from_url('https://example.com/')[0]
 
     assert result.title == 'Persona 4: Golden Characters'
-    assert result.url is None
+    assert result.urls == []
     assert result.author == 'Unknown'
