@@ -12,9 +12,9 @@
 Unofficial wrapper for the [SauceNAO](https://saucenao.com) JSON API
 
 # Installation
-This package requires Python 3.6 or later
+This package requires Python 3.6 or later.
 ```
-pip install saucenao_api
+pip install -U saucenao_api
 ```
 
 # Usage
