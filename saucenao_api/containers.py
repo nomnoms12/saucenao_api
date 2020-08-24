@@ -62,9 +62,9 @@ class BasicSauce:
 
 
 class BookSauce(BasicSauce):
-    def __init__(self, result):
-        super().__init__(result)
-        data = result['data']
+    def __init__(self, raw):
+        super().__init__(raw)
+        data = raw['data']
 
         self.part: str = data['part']
 
@@ -73,9 +73,9 @@ class BookSauce(BasicSauce):
 
 
 class VideoSauce(BasicSauce):
-    def __init__(self, result):
-        super().__init__(result)
-        data = result['data']
+    def __init__(self, raw):
+        super().__init__(raw)
+        data = raw['data']
 
         self.part:     str = data['part']
         self.year:     str = data['year']
