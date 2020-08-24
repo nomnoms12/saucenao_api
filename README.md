@@ -27,7 +27,7 @@ results = sauce.from_url('https://i.imgur.com/oZjCxGo.jpg')  # or from_file()
 best = results[0]  # results sorted by similarity
 ```
 
-The library attempts to provide a developer friendly container format for all results. Meaning, no matter if SauceNao returns a Pixiv source result or a more obscure source, you'll be able to easily pull the `title`, `url`, `author` and other useful information:
+The library attempts to provide a developer friendly container format for all results. Meaning, no matter if SauceNao returns a Pixiv source result or a more obscure source, you'll be able to easily pull the `title`, `urls`, `author` and other useful information:
 ```python
 from saucenao_api import SauceNao
 results = SauceNao().from_url('https://i.imgur.com/oZjCxGo.jpg')
@@ -42,7 +42,7 @@ results.long_remaining   # 99 (per day limit)
 results[0].thumbnail     # temporary URL for picture preview
 results[0].similarity    # 93.3
 results[0].title         # めぐみん
-results[0].url           # ['https://www.pixiv.net/member_illust.php?mode=medium&illust_id=77630170']
+results[0].urls          # ['https://www.pixiv.net/member_illust.php?mode=medium&illust_id=77630170']
 results[0].author        # frgs
 ```
 
