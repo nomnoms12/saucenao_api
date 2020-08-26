@@ -6,7 +6,7 @@ with open('README.md', encoding='utf-8') as fh:
 
 setuptools.setup(
     name='saucenao_api',
-    version='2.1.1',
+    version='2.2.0',
     author='nomnoms12',
     author_email='alexander.ign0918@gmail.com',
     description='Wrapper for SauceNAO JSON API',
@@ -30,7 +30,6 @@ setuptools.setup(
             'responses ~= 0.10.14',
             'pytest ~= 5.4.2',
             'pytest-cov ~= 2.8.1',
-            'coveralls ~= 2.0.0',
         ],
     },
     project_urls={
