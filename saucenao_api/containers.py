@@ -36,8 +36,7 @@ class BasicSauce:
             return data['ext_urls']
         elif 'getchu_id' in data:
             return [f'http://www.getchu.com/soft.phtml?id={data["getchu_id"]}']
-        else:
-            return []
+        return []
 
     @staticmethod
     def _get_author(data):
