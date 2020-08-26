@@ -1,5 +1,0 @@
-requests ~= 2.23.0
-
-responses ~= 0.10.14
-pytest ~= 5.4.2
-pytest-cov ~= 2.8.1
