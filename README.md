@@ -1,8 +1,8 @@
 ![SauceNAO Logo](https://user-images.githubusercontent.com/44947427/89287471-b9289000-d65c-11ea-905d-aa72f908a9b3.png)
 
 # saucenao_api
-[![Build Status](https://travis-ci.com/nomnoms12/saucenao_api.svg?branch=master)](https://travis-ci.com/nomnoms12/saucenao_api)
-[![Coverage Status](https://coveralls.io/repos/github/nomnoms12/saucenao_api/badge.svg?branch=master)](https://coveralls.io/github/nomnoms12/saucenao_api?branch=master)
+![Tests](https://github.com/nomnoms12/saucenao_api/workflows/Tests/badge.svg?branch=master)
+[![codecov](https://codecov.io/gh/nomnoms12/saucenao_api/branch/master/graph/badge.svg)](https://codecov.io/gh/nomnoms12/saucenao_api)
 [![License](https://img.shields.io/github/license/nomnoms12/saucenao_api)](https://github.com/nomnoms12/saucenao_api/blob/master/LICENSE)
 [![SauceNao Status](https://img.shields.io/website?url=https%3A%2F%2Fsaucenao.com)](https://saucenao.com)
 [![PyPI - Python Version](https://img.shields.io/pypi/pyversions/saucenao_api)](https://pypi.org/project/saucenao-api)
