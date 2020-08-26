@@ -44,6 +44,7 @@ results[0].similarity    # 93.3
 results[0].title         # めぐみん
 results[0].urls          # ['https://www.pixiv.net/member_illust.php?mode=medium&illust_id=77630170']
 results[0].author        # frgs
+results[0].raw           # raw result
 ```
 
 Video search results and book search results provide additional attributes:
