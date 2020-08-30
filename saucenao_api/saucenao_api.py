@@ -3,8 +3,8 @@ from typing import Optional, BinaryIO
 import requests
 
 from .containers import SauceResponse
-from .errors import (UnknownServerError, UnknownClientError, BadKeyError, BadFileSizeError,
-                     ShortLimitReachedError, LongLimitReachedError)
+from .errors import (UnknownApiError, UnknownServerError, UnknownClientError, BadKeyError,
+                     BadFileSizeError, ShortLimitReachedError, LongLimitReachedError)
 from .params import _OutputType, DB, Hide, BgColor
 
 
@@ -71,7 +71,7 @@ class SauceNao:
                 raise LongLimitReachedError('24 hours limit reached')
             raise ShortLimitReachedError('30 seconds limit reached')
 
-        resp.raise_for_status()
+        raise UnknownApiError(f'Server returned status code {status_code}')
 
     @staticmethod
     def _verify_response(resp, params):
