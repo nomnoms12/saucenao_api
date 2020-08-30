@@ -1,10 +1,9 @@
 import pytest
-import requests
 import responses
 
 from saucenao_api import SauceNao
-from saucenao_api.errors import (UnknownServerError, UnknownClientError, BadKeyError, BadFileSizeError,
-                                 ShortLimitReachedError, LongLimitReachedError)
+from saucenao_api.errors import (UnknownApiError, UnknownServerError, UnknownClientError, BadKeyError,
+                                 BadFileSizeError, ShortLimitReachedError, LongLimitReachedError)
 from . import test_suite as e
 
 SAUCENAO_URL = SauceNao.SAUCENAO_URL
@@ -23,7 +22,7 @@ def test_from_url(mocked_responses):
     mocked_responses.add_callback(responses.POST, SAUCENAO_URL, callback=request_callback)
 
     saucenao = SauceNao()
-    with pytest.raises(requests.exceptions.HTTPError):
+    with pytest.raises(UnknownApiError):
         saucenao.from_url('https://example.com/')
 
 
@@ -36,7 +35,7 @@ def test_from_file(mocked_responses):
     with open('tests/test_suite.py', 'rb') as f:
         bin_file = f.read()
         f.seek(0)
-        with pytest.raises(requests.exceptions.HTTPError):
+        with pytest.raises(UnknownApiError):
             SauceNao().from_file(f)
 
 
@@ -51,7 +50,7 @@ def test_optional_params(mocked_responses):
     mocked_responses.add_callback(responses.POST, SAUCENAO_URL, callback=request_callback)
 
     saucenao = SauceNao('SauceNAO', dbmask=12, dbmaski=918)
-    with pytest.raises(requests.exceptions.HTTPError):
+    with pytest.raises(UnknownApiError):
         saucenao.from_url('https://example.com/')
 
 
