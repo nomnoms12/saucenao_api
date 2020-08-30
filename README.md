@@ -83,5 +83,7 @@ The parameters `frame`,` hide` and `bgcolor` are taken from the main page and fr
 ### Exceptions
 All exceptions inherit from `SauceNaoApiError` for easy catching and handling. See [`errors.py`](saucenao_api/errors.py) file for details.
 
+*Note: SauceNao doesn't have good documentation. Exceptions are created only based on observations of changes in the returned status codes. If you find a specific error that is not being processed, please report it.*
+
 # License
 This package is based on [`pysaucenao`](https://github.com/FujiMakoto/pysaucenao).
