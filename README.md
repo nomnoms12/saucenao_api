@@ -78,7 +78,7 @@ sauce = SauceNao(api_key=None,          # Optional[str]
                  bgcolor=BgColor.NONE,  # int
 )
 ```
-The parameters `frame`,` hide` and `bgcolor` are taken from the main page and from the [testing page](https://saucenao.com/testing), so their performance is not guaranteed. For the rest see [SauceNAO User Config](https://saucenao.com/user.php?page=search-api) page (registration required).
+The parameters `frame`, `hide` and `bgcolor` are taken from the main page and from the [testing page](https://saucenao.com/testing), so their performance is not guaranteed. For the rest see [SauceNAO User Config](https://saucenao.com/user.php?page=search-api) page (registration required).
 
 ### Exceptions
 All exceptions inherit from `SauceNaoApiError` for easy catching and handling. See [`errors.py`](saucenao_api/errors.py) file for details.
