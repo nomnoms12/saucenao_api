@@ -35,6 +35,10 @@ class DB(enum.auto):
     Madokami = 36
     MangaDex = 37
     HMisc_EHentai = 38
+    Artstation = 39
+    FurAffinity = 40
+    Twitter = 41
+    Furry_Network = 42
     ALL = 999
 
 
