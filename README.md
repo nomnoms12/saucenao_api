@@ -21,7 +21,8 @@ pip install -U saucenao_api
 ```python
 from saucenao_api import SauceNao
 
-sauce = SauceNao()
+# Replace the key with your own
+sauce = SauceNao('077f16b38a2452401790540f41246c7d951330c0')
 results = sauce.from_url('https://i.imgur.com/oZjCxGo.jpg')  # or from_file()
 
 best = results[0]  # results sorted by similarity
@@ -30,7 +31,7 @@ best = results[0]  # results sorted by similarity
 The library attempts to provide a developer friendly container format for all results. Meaning, no matter if SauceNao returns a Pixiv source result or a more obscure source, you'll be able to easily pull the `title`, `urls`, `author` and other useful information:
 ```python
 from saucenao_api import SauceNao
-results = SauceNao().from_url('https://i.imgur.com/oZjCxGo.jpg')
+results = SauceNao('077f16b38a2452401790540f41246c7d951330c0').from_url('https://i.imgur.com/oZjCxGo.jpg')
 
 len(results)   # 6
 bool(results)  # True
@@ -50,7 +51,7 @@ results[0].raw           # raw result
 Video search results and book search results provide additional attributes:
 ```python
 from saucenao_api import SauceNao, VideoSauce, BookSauce
-result = SauceNao().from_url('https://i.imgur.com/k9xlw6f.jpg')[0]
+result = SauceNao('077f16b38a2452401790540f41246c7d951330c0').from_url('https://i.imgur.com/k9xlw6f.jpg')[0]
 
 if isinstance(result, VideoSauce):
     result.part      # 02
