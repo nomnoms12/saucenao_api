@@ -13,16 +13,16 @@ class SauceNao:
     SAUCENAO_URL = 'https://saucenao.com/search.php'
 
     def __init__(self,
-                 api_key: Optional[str] = None,
+                 api_key:  Optional[str] = None,
                  *,
                  testmode: int = 0,
-                 dbmask: Optional[int] = None,
-                 dbmaski: Optional[int] = None,
-                 db: int = DB.ALL,
-                 numres: int = 6,
-                 frame: int = 1,
-                 hide: int = Hide.NONE,
-                 bgcolor: int = BgColor.NONE,
+                 dbmask:   Optional[int] = None,
+                 dbmaski:  Optional[int] = None,
+                 db:       int = DB.ALL,
+                 numres:   int = 6,
+                 frame:    int = 1,
+                 hide:     int = Hide.NONE,
+                 bgcolor:  int = BgColor.NONE,
                  ) -> None:
 
         params = dict()
@@ -39,7 +39,7 @@ class SauceNao:
         params['numres'] = numres
         params['hide'] = hide
         params['frame'] = frame
-        params['bgcolor'] = bgcolor  # from https://saucenao.com/testing/
+        params['bgcolor'] = bgcolor               # from https://saucenao.com/testing/
         params['output_type'] = _OutputType.JSON
         self.params = params
 
