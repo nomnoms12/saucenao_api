@@ -10,3 +10,4 @@ pytest-cov = "~=2.8.1"
 
 [packages]
 requests = "~=2.23.0"
+aiohttp = "~=3.7.4"
