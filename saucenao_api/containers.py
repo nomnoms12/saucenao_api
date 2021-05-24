@@ -49,6 +49,8 @@ class BasicSauce:
             return data['member_name']
         elif 'pawoo_user_username' in data:
             return data['pawoo_user_username']
+        elif 'twitter_user_handle' in data:
+            return data['twitter_user_handle']
         elif 'company' in data:
             return data['company']
         elif 'creator' in data:
