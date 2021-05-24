@@ -395,3 +395,40 @@ def test_hmiscehentai(mocked_responses):
     assert result.title == 'Persona 4: Golden Characters'
     assert result.urls == []
     assert result.author == 'Unknown'
+
+def test_twitter(mocked_responses):
+    mocked_responses.add(responses.POST, SAUCENAO_URL, json=e.Twitter)
+    result = SauceNao().from_url('https://example.com/')[0]
+
+    assert result.title == '2017-06-26T11:09:04Z'
+    assert result.urls == ['https://twitter.com/i/web/status/879295443850506242']
+    assert result.author == 'petty_lily_xxx'
+    assert type(result) is BasicSauce
+
+def test_artstation(mocked_responses):
+    mocked_responses.add(responses.POST, SAUCENAO_URL, json=e.Artstation)
+    result = SauceNao().from_url('http://example.com/')[0]
+
+    assert result.title == 'Adnachiel Arknights Fanart'
+    assert result.urls == ['https://www.artstation.com/artwork/OoyP0e']
+    assert result.author == 'Rclouds 96'
+    assert type(result) is BasicSauce
+
+def test_furaffinity(mocked_responses):
+    mocked_responses.add(responses.POST, SAUCENAO_URL, json=e.FurAffinity)
+    result = SauceNao().from_url('http://example.com')[0]
+
+    assert result.title == 'playtime'
+    assert result.urls == ['https://www.furaffinity.net/view/14385432']
+    assert result.author == 'writersmask'
+    assert type(result) is BasicSauce
+
+def test_furry_network(mocked_responses):
+    mocked_responses.add(responses.POST, SAUCENAO_URL, json=e.FurAffinity)
+    result = SauceNao().from_url('http://example.com')[0]
+
+    assert result.title == 'playtime'
+    assert result.urls == ['https://www.furaffinity.net/view/14385432']
+    assert result.author == 'writersmask'
+    assert type(result) is BasicSauce 
+
