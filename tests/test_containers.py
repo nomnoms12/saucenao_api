@@ -430,5 +430,5 @@ def test_furry_network(mocked_reponses):
     assert result.title == 'playtime'
     assert result.urls == ['https://www.furaffinity.net/view/14385432']
     assert result.author == 'writersmask'
-    assert type(result) is BasicSauce
+    assert type(result) is BasicSauce 
 
