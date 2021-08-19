@@ -135,13 +135,13 @@ class AIOSauceNao(SauceNao):
         async with session.post(self.SAUCENAO_URL, params=params, data=files) as resp:
             status_code = resp.status
 
+            # close only if not called via 'async with AIOSauceNao(...)'
+            if not self._session:
+                await session.close()
+
             if status_code == 200:
                 parsed_resp = await resp.json()
                 raw = self._verify_response(parsed_resp, params)
-
-                # close only if not called via 'async with AIOSauceNao(...)'
-                if not self._session:
-                    await session.close()
 
                 return SauceResponse(raw)
 
