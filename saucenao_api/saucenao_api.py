@@ -111,6 +111,16 @@ class AIOSauceNao(SauceNao):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
 
+        self._session = None
+
+    async def __aenter__(self):
+        self._session = aiohttp.ClientSession()
+        return self
+
+    async def __aexit__(self, exc_type, exc_val, exc_tb):
+        if self._session:
+            await self._session.close()
+
     async def from_file(self, file: BinaryIO) -> SauceResponse:
         return await self._search(self.params, {'file': file})
 
@@ -120,30 +130,36 @@ class AIOSauceNao(SauceNao):
         return await self._search(params)
 
     async def _search(self, params, files=None):
-        async with aiohttp.ClientSession() as session:
-            async with session.post(self.SAUCENAO_URL, params=params, data=files) as resp:
-                status_code = resp.status
+        session = self._session or aiohttp.ClientSession()
 
-                if status_code == 200:
-                    parsed_resp = await resp.json()
-                    raw = self._verify_response(parsed_resp, params)
-                    return SauceResponse(raw)
+        async with session.post(self.SAUCENAO_URL, params=params, data=files) as resp:
+            status_code = resp.status
 
-                # Taken from https://saucenao.com/tools/examples/api/identify_images_v1.1.py
-                # Actually server returns 200 and user_id=0 if key is bad
-                elif status_code == 403:
-                    raise BadKeyError('Invalid API key')
+            if status_code == 200:
+                parsed_resp = await resp.json()
+                raw = self._verify_response(parsed_resp, params)
 
-                elif status_code == 413:
-                    raise BadFileSizeError('File is too large')
+                # close only if not called via 'async with AIOSauceNao(...)'
+                if not self._session:
+                    await session.close()
 
-                elif status_code == 429:
-                    parsed_resp = await resp.json()
-                    if 'Daily' in parsed_resp['header']['message']:
-                        raise LongLimitReachedError('24 hours limit reached')
-                    raise ShortLimitReachedError('30 seconds limit reached')
+                return SauceResponse(raw)
 
-                raise UnknownApiError(f'Server returned status code {status_code}')
+            # Taken from https://saucenao.com/tools/examples/api/identify_images_v1.1.py
+            # Actually server returns 200 and user_id=0 if key is bad
+            elif status_code == 403:
+                raise BadKeyError('Invalid API key')
+
+            elif status_code == 413:
+                raise BadFileSizeError('File is too large')
+
+            elif status_code == 429:
+                parsed_resp = await resp.json()
+                if 'Daily' in parsed_resp['header']['message']:
+                    raise LongLimitReachedError('24 hours limit reached')
+                raise ShortLimitReachedError('30 seconds limit reached')
+
+            raise UnknownApiError(f'Server returned status code {status_code}')
 
     @staticmethod
     def _verify_response(parsed_resp, params):
