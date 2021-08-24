@@ -63,6 +63,21 @@ elif isinstance(result, BookSauce):
 ```
 *You can use the `dir` function to see all the attributes.*
 
+## Asyncio
+```python
+import asyncio
+from saucenao_api import AIOSauceNao
+
+async def main():
+    # async requesting is also supported via the AIOSauceNao class
+    async with AIOSauceNao('077f16b38a2452401790540f41246c7d951330c0') as aio:
+        results = await aio.from_url('https://i.imgur.com/k9xlw6f.jpg')
+    
+asyncio.run(main())
+```
+The async with functionality is pretty useful if you want to make multiple requests.
+Note that you can still search without the `async with` syntax by simply calling `await AIOSauceNao(...).from_url(...)`.
+
 ## Advanced usage
 ```python
 from saucenao_api import SauceNao
