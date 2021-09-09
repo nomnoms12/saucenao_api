@@ -24,10 +24,12 @@ setuptools.setup(
     python_requires='>= 3.6',
     install_requires=[
         'requests ~= 2.23.0',
+        'aiohttp ~= 3.7.4'
     ],
     extras_require={
         'test': [
             'responses ~= 0.10.14',
+            'aioresponses ~= 0.7.2',
             'pytest ~= 5.4.2',
             'pytest-cov ~= 2.8.1',
         ],
