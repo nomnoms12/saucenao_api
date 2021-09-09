@@ -5,7 +5,7 @@ verify_ssl = true
 
 [dev-packages]
 responses = "~=0.10.14"
-aioresponses "~=0.7.2"
+aioresponses = "~=0.7.2"
 pytest = "~=5.4.2"
 pytest-cov = "~=2.8.1"
 
