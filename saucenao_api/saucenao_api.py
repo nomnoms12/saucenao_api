@@ -44,7 +44,7 @@ class SauceNao:
         self.params = params
 
     def from_file(self, file: BinaryIO) -> SauceResponse:
-        return self._search(self.params, {'file': file})
+        return self._search(self.params, {'file': open(file, 'rb')})
 
     def from_url(self, url: str) -> SauceResponse:
         params = self.params.copy()
@@ -122,7 +122,7 @@ class AIOSauceNao(SauceNao):
             await self._session.close()
 
     async def from_file(self, file: BinaryIO) -> SauceResponse:
-        return await self._search(self.params, {'file': file})
+        return await self._search(self.params, {'file': open(file, 'rb')})
 
     async def from_url(self, url: str) -> SauceResponse:
         params = self.params.copy()
