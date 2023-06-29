@@ -1,3 +1,4 @@
+import _io
 from typing import Optional, BinaryIO
 
 import requests
@@ -44,6 +45,16 @@ class SauceNao:
         self.params = params
 
     def from_file(self, file: BinaryIO) -> SauceResponse:
+        # when input is an _io.BufferedReader. seek it in 0
+        if type(file) == _io.BufferedReader:
+            file.seek(0)
+            pass
+        if type(file) == bytes:
+            pass
+        # when input is an image file path. read it in binary mode
+        if type(file) == str:
+            with open(file, "rb", ) as f:
+                file = f.read()
         return self._search(self.params, {'file': file})
 
     def from_url(self, url: str) -> SauceResponse:
